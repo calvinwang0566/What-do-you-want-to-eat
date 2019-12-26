@@ -120,12 +120,9 @@ class Food(tk.Frame):
         self.cvsMain = tk.Canvas(self, width = 800, height = 600, bg = "white")
         # self.cvsMain.grid(row = 15,  sticky = tk.NE + tk.SW)
 
-        # 取得輸入的資料
-
-
-
-    # 後端按鈕
+    # 確認按鈕功能
     def clickBtn(self):
+        # 抓出各個下拉選單的內容，轉換成數字
         if self.commood.get() == "好":
             mood = 1
         elif self.commood.get() == "還好":
@@ -142,18 +139,25 @@ class Food(tk.Frame):
 
         food_type = self.comtype.get()
         
-        mood_filter = df["心情(好、普、爛)"] == mood
-        people_filter = df["適合人數(1、2-4、5)"] == people
-        df_new = df[mood_filter & people_filter]
-        df_new["type"] = df_new["分類"].str.find(food_type)
-        food_filter = df_new["type"] == 0
+        # 篩選出符合的餐廳
+        try:    # 若有符合所有條件的
+            mood_filter = df["心情(好、普、爛)"] == mood
+            people_filter = df["適合人數(1、2-4、5)"] == people
+            df_new = df[mood_filter & people_filter]
+            df_new["type"] = df_new["分類"].str.find(food_type)
+            food_filter = df_new["type"] == 0
+            
+            df_food = df_new[food_filter]   # 符合食物種類的餐廳
+            df_random = df_food.sample(n = 1)   # 隨機挑選
 
-        df_food = df_new[food_filter]
-        df_random = df_food.sample(n = 1)
-        messagebox.showinfo("店名", df_random["店名"].to_string(index=False))
-
-        
-        # messagebox.showinfo("心情",self.commood.get())
+            # 跳出小視窗推薦
+            messagebox.showinfo("推薦你吃！", df_random["店名"].to_string(index = False))
+        except:    # 沒有都符合的話，以食物種類為主
+            df["type"] = df["分類"].str.find(food_type)
+            food_filter = df["type"] == 0
+            df_food = df[food_filter]
+            df_random = df_food.sample(n = 1)
+            messagebox.showinfo("推薦你吃！", df_random["店名"].to_string(index = False))
 
 window = Food()
 window.master.title("NTU Food Recommender")
