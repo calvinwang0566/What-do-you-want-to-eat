@@ -39,9 +39,9 @@ class Food(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        f = tkFont.Font(size = 18, family = "Arial")
-        f1 = tkFont.Font(size = 20, family = "Arial", weight="bold")
-        f2 = tkFont.Font(size = 12, family = "Arial")
+        f = tkFont.Font(size = 18, family = "微軟正黑體")
+        f1 = tkFont.Font(size = 20, family = "微軟正黑體", weight="bold")
+        f2 = tkFont.Font(size = 12, family = "微軟正黑體")
 
         # 日期
         self.lbldate = tk.Label(self, text = str(datetime.date.today()), height = 1, width = 15, font = f2, fg ='SteelBlue', justify = tk.LEFT, anchor=tk.NW)
@@ -61,7 +61,7 @@ class Food(tk.Frame):
         line2 = line.resize( (350, 1), Image.BILINEAR )
         line2.save( "line2.png" )
         self.imageline = tk.PhotoImage(file="line2.png")
-        self.lblline = tk.Label(self, image=self.imageline, anchor=tk.CENTER)
+        self.lblline = tk.Label(self, image=self.imageline, anchor = tk.CENTER)
         self.lblline.grid(row = 4,columnspan = 2)
         os.remove("line2.png")
 
@@ -92,7 +92,7 @@ class Food(tk.Frame):
         # 種類
         self.lbltype = tk.Label(self, text = "種類：" , height = 1, width = 15, font = f1,anchor=tk.NW)
         self.stdtype = ("三明治", "中港", "飲料", "火鍋", "早餐", "便當", "炸雞", "素食", "甜點", "滷味", "餃子", "麵類", "百貨美食節", "粥&湯", "鐵板燒", "FS_SOGO88", "日韓", "黎巴嫩料理", "咖哩", "東南亞", "美式料理", "Pizza比薩", "其他歐系料理")
-        self.comtype = tt.Combobox(self, width=15, values= self.stdtype)
+        self.comtype = tt.Combobox(self, width=15, values = self.stdtype)
         self.lbltype.grid(row = 10,  sticky = tk.W)
         self.comtype.grid(row = 11, sticky = tk.W)
 
@@ -125,9 +125,9 @@ class Food(tk.Frame):
 
     # 確認按鈕功能
     def clickBtn(self):
-        f = tkFont.Font(size = 18, family = "Arial")
-        f1 = tkFont.Font(size = 20, family = "Arial", weight="bold")
-        f2 = tkFont.Font(size = 12, family = "Arial")
+        f = tkFont.Font(size = 18, family = "微軟正黑體")
+        f1 = tkFont.Font(size = 20, family = "微軟正黑體", weight="bold")
+        f2 = tkFont.Font(size = 12, family = "微軟正黑體")
 
         # 抓出各個下拉選單的內容，轉換成數字
         if self.commood.get() == "好":
@@ -169,19 +169,18 @@ class Food(tk.Frame):
             
             self.top = tk.Toplevel()
 
-            self.name_lbl = tk.Label(self.top, text = "店名：" + restaurant_name, font = f)
+            self.name_lbl = tk.Label(self.top, text = "店名：" + restaurant_name, font = f, fg="blue", cursor="hand2")
             self.name_lbl.pack()
 
-            self.star_lbl = tk.Label(self.top, text = "星級：" + restaurant_star, font = f)
+            self.star_lbl = tk.Label(self.top, text = "星級：" + restaurant_star, font = f2)
             self.star_lbl.pack()
 
-            self.comment_lbl = tk.Label(self.top, text = "評論數：" + restaurant_comment, font = f)
+            self.comment_lbl = tk.Label(self.top, text = "評論數：" + restaurant_comment, font = f2)
             self.comment_lbl.pack()
             
-            # self.name_lbl.bind("<Button-1>", callback)
+            self.name_lbl.bind("<Button-1>", lambda e: callback())
 
         except:    
-            print("no")
             messagebox.showerror(title = "Error", message = "沒有符合條件的餐廳")
 
             # 沒有都符合的話，以食物種類為主
@@ -190,10 +189,10 @@ class Food(tk.Frame):
             # df_food = df[food_filter]
             # df_random = df_food.sample(n = 1)
 
-            # yes_no = messagebox.askquestion("推薦你吃！", message = df_random["店名"].to_string(index = False).strip() + "\n(未有符合條件之餐廳，隨機選擇)" + "\n星級：" + df_random["星級"].to_string(index = False) + df_random["評論數"].to_string(index = False) + "\n" + "\n是否需要店家連結")
+            # yes_no = messagebox.askquestion("推薦你吃！", message = df_random["店名"].to_string(index = False).strip() + "\n(未有符合條件之餐廳，隨機選擇)" + "\n星級：" + df_random["星級"].to_string(index = False) + "\n評論數：" + df_random["評論數"].to_string(index = False) + "\n" + "\n是否需要店家連結")
 
-        # def callback(self):
-        #     webbrowser.open_new(r"http://www.google.com")
+def callback():
+    webbrowser.open_new("https://www.foodpanda.com.tw/restaurants/lat/25.0173405/lng/121.5397518/city/%E5%A4%A7%E5%AE%89%E5%8D%80/address/%25E8%2587%25BA%25E7%2581%25A3%25E5%25A4%25A7%25E5%25AD%25B8%252C%252010617%25E5%258F%25B0%25E7%2581%25A3%25E5%258F%25B0%25E5%258C%2597%25E5%25B8%2582%25E5%25A4%25A7%25E5%25AE%2589%25E5%258D%2580%25E7%25BE%2585%25E6%2596%25AF%25E7%25A6%258F%25E8%25B7%25AF%25E5%259B%259B%25E6%25AE%25B51%25E8%2599%259F/%25E7%25BE%2585%25E6%2596%25AF%25E7%25A6%258F%25E8%25B7%25AF%25E5%259B%259B%25E6%25AE%25B5/1%2520%25E8%2587%25BA%25E7%2581%25A3%25E5%25A4%25A7%25E5%25AD%25B8?postcode=10617")
             
 window = Food()
 window.master.title("NTU Food Recommender")
