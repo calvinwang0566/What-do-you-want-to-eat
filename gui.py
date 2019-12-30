@@ -61,7 +61,7 @@ class Food(tk.Frame):
         line2.save( "line2.png" )
         self.imageline = tk.PhotoImage(file="line2.png")
         self.lblline = tk.Label(self, image=self.imageline, anchor=tk.CENTER)
-        self.lblline.grid(row = 4,columnspan = 2)
+        self.lblline.grid(row = 4)
         os.remove("line2.png")
         
         # 心情
