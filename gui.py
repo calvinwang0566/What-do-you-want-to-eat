@@ -27,7 +27,7 @@ degreeinfo = degree.string
 
 # 讀取food panda資料
 import pandas as pd
-df = pd.read_csv("panda.csv")
+df = pd.read_csv("newnewpanda.csv")
 
 # gui主體
 class Food(tk.Frame):
