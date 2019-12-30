@@ -71,7 +71,7 @@ class Food(tk.Frame):
         line3.save( "line3.png" )
         self.imageline2 = tk.PhotoImage(file="line3.png")
         self.lblline2 = tk.Label(self, image=self.imageline2, anchor=tk.CENTER)
-        self.lblline2.grid(row = 14, columnspan = 2)
+        self.lblline2.grid(row = 15, columnspan = 2)
         os.remove("line3.png")
 
         
@@ -97,8 +97,11 @@ class Food(tk.Frame):
         self.comtype.grid(row = 11, sticky = tk.W)
 
         # 空行
-        self.labemotion = tk.Label(self, text = '', height=1, width=15, font = f1,anchor=tk.NW)
-        self.labemotion.grid(row = 13, sticky = tk.W)
+        self.labemotion1 = tk.Label(self, text = '', height=1, width=15, font = f1,anchor=tk.NW)
+        self.labemotion1.grid(row = 12, sticky = tk.W)
+
+        self.labemotion2 = tk.Label(self, text = '', height=1, width=15, font = f1,anchor=tk.NW)
+        self.labemotion2.grid(row = 14, sticky = tk.W)
 
 
         # 天氣
@@ -114,7 +117,7 @@ class Food(tk.Frame):
         ok2.save( "ok2.png" )
         self.imageok = tk.PhotoImage(file="ok2.png")
         self.btnok = tk.Button(self, image = self.imageok, command = self.clickBtn, anchor = tk.CENTER, cursor = "hand2")
-        self.btnok.grid(row = 12)
+        self.btnok.grid(row = 13)
         os.remove("ok2.png")
 
 
