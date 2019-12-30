@@ -108,12 +108,12 @@ class Food(tk.Frame):
 
 
         # 分隔線
-        lline = Image.open( "lline.png" )
+        lline = Image.open( "line.png" )
         line3 = lline.resize( (350, 1), Image.BILINEAR )
         line3.save( "line3.png" )
         self.imageline2 = tk.PhotoImage(file="line3.png")
         self.lblline2 = tk.Label(self, image=self.imageline2, anchor=tk.CENTER)
-        self.lblline2.grid(row = 14)
+        self.lblline2.grid(row = 14,columnspan = 2)
         os.remove("line3.png")
 
         # 結果
